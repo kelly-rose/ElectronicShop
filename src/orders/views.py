@@ -139,7 +139,7 @@ def addShipping(request):
     city = post_data['city']
     state = post_data['state']
 
-    shipping_addr = UserShippingAddress(nick=nick,user=u, street=street, zipcode=zipcode, city=city,state=state)
+    shipping_addr = UserShippingAddress(nick=nick,user=u, street=street, zipcode=zipcode, city=city, state=state)
     try:
         if(UserShippingAddress.objects.count()==0):
             shipping_addr.checked=True
@@ -179,7 +179,11 @@ def addBilling(request):
     state = post_data['state']
     billing_addr = UserBillingAddress(nick=nick,user=u, street=street, zipcode=zipcode, city=city,state=state)
     try:
-        billing_addr.save()
+        if (UserBillingAddress.objects.count() == 0):
+            billing_addr.checked = True
+            billing_addr.save()
+        else:
+            billing_addr.save()
     except Exception as e:
         return JsonResponse({
             'status': 'fail',

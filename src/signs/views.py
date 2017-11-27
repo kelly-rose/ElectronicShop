@@ -18,7 +18,24 @@ from carts.models import Cart
 from carts.mixins import CartTokenMixin
 from rest_framework.views import APIView
 
+def username_exists(request):
+    username = request.GET.get('u', '')
 
+    try:
+        u = User.objects.get(username=username)
+    except User.DoesNotExist:
+        return JsonResponse({
+            'status': 'success',
+            'data': {
+                'username_exists': False
+            }
+        })
+    return JsonResponse({
+        'status': 'success',
+        'data': {
+            'username_exists': True
+        }
+    })
 
 def send_csrf(request):
     # just by doing this it will send csrf token back as Set-Cookie header

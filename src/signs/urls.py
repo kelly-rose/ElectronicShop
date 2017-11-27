@@ -13,7 +13,7 @@ auth_routes = [
         views.activate, name='activate'),
     # url(r'^auth/register/$', include('registration.backends.default.urls')),
 
-    # url(r'^auth/username-exists/$', views.username_exists, name='check unique username'),
+    url(r'^/username-exists/$', views.username_exists, name='check unique username'),
 ]
 
 # user_data_routes = [

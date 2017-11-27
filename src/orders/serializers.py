@@ -40,6 +40,7 @@ class UserBillingAddressSerializer(serializers.ModelSerializer):
 			"nick",
 			"user",
 			"street",
+			"state",
 			"city",
 			"zipcode",
 			"checked"
@@ -52,6 +53,7 @@ class UserShippingAddressSerializer(serializers.ModelSerializer):
 			"nick",
 			"user",
 			"street",
+			"state",
 			"city",
 			"zipcode",
 			"checked"
